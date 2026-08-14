@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { site } from "@/content/site";
 import { Logo } from "@/components/layout/Logo";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/cn";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -57,6 +58,7 @@ export function Navbar() {
         </a>
 
         <button
+          ref={menuButtonRef}
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
@@ -72,7 +74,7 @@ export function Navbar() {
         </button>
       </div>
 
-      <MobileMenu open={menuOpen} onClose={closeMenu} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} triggerRef={menuButtonRef} />
     </header>
   );
 }

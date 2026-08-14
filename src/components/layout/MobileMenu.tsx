@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { site } from "@/content/site";
 
 export function MobileMenu({
   open,
   onClose,
+  triggerRef,
 }: {
   open: boolean;
   onClose: () => void;
+  triggerRef: RefObject<HTMLButtonElement | null>;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -25,11 +27,14 @@ export function MobileMenu({
 
     panelRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
 
+    const trigger = triggerRef.current;
+
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
     };
-  }, [open, onClose]);
+  }, [open, onClose, triggerRef]);
 
   if (!open) return null;
 
