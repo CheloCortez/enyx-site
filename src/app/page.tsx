@@ -1,16 +1,13 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <main id="conteudo">
-        <section id="home" className="pt-40 pb-24">
-          <div className="container-page">
-            <p className="text-muted">Seções entram aqui nas próximas tasks.</p>
-          </div>
-        </section>
+        <Hero />
       </main>
       <Footer />
     </>
