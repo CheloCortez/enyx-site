@@ -7,6 +7,7 @@ import { Portfolio } from "@/components/sections/Portfolio";
 import { Process } from "@/components/sections/Process";
 import { Founders } from "@/components/sections/Founders";
 import { CtaStats } from "@/components/sections/CtaStats";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Process />
         <Founders />
         <CtaStats />
+        <Contact />
       </main>
       <Footer />
     </>
