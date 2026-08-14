@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0e10;
+  --color-bg-alt: #0d1214;
+  --color-surface: #12171a;
+  --color-surface-2: #171d21;
+  --color-border: #1f262a;
+  --color-border-soft: #2a3338;
+  --color-text: #e8edef;
+  --color-muted: #8a9ba3;
+  --color-accent: #00e39b;
+  --color-accent-dim: #0b7a5a;
+  --color-accent-soft: rgb(0 227 155 / 0.1);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* A navbar tem 64px; as âncoras param abaixo dela. */
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Grid de linhas sutil do hero, apagando nas bordas. */
+  .bg-grid {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        var(--color-border) 0 1px,
+        transparent 1px 80px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        var(--color-border) 0 1px,
+        transparent 1px 80px
+      );
+    opacity: 0.35;
+    mask-image: radial-gradient(ellipse 100% 70% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  /* Brilho verde do hero. Mais fraco no mobile para não lavar o texto. */
+  .bg-glow {
+    background-image: radial-gradient(
+      ellipse 60% 50% at 70% 35%,
+      rgb(0 227 155 / 0.1),
+      transparent 70%
+    );
+  }
+
+  @media (max-width: 767px) {
+    .bg-glow {
+      background-image: radial-gradient(
+        ellipse 90% 40% at 50% 20%,
+        rgb(0 227 155 / 0.06),
+        transparent 70%
+      );
+    }
+  }
+
+  .container-page {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+}
