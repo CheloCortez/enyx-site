@@ -8,7 +8,7 @@ import {
   type ContactErrors,
   type ContactInput,
 } from "@/lib/contact";
-import { buildWhatsappUrl } from "@/lib/whatsapp";
+import { buildWhatsappUrl, normalizeWhatsappPhone } from "@/lib/whatsapp";
 import { cn } from "@/lib/cn";
 
 const VAZIO: ContactInput = { name: "", email: "", message: "" };
@@ -152,7 +152,7 @@ export function ContactForm() {
       <p className="mt-6 text-center text-sm text-muted">
         {site.contactSection.whatsappPrompt}{" "}
         <a
-          href={`https://wa.me/${site.contact.whatsapp}`}
+          href={`https://wa.me/${normalizeWhatsappPhone(site.contact.whatsapp)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-accent hover:opacity-80"

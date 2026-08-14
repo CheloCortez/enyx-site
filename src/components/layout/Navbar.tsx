@@ -31,7 +31,11 @@ export function Navbar() {
       )}
     >
       <div className="container-page flex h-16 items-center justify-between">
-        <a href="#home" aria-label={`${site.brand.name} — início`}>
+        <a
+          href="#home"
+          aria-label={`${site.brand.name} — início`}
+          className="inline-flex min-h-11 items-center"
+        >
           <Logo />
         </a>
 
@@ -41,7 +45,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-muted transition-colors hover:text-text"
+                  className="inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-text"
                 >
                   {link.label}
                 </a>
@@ -52,7 +56,7 @@ export function Navbar() {
 
         <a
           href={site.navCta.href}
-          className="hidden min-h-10 items-center rounded-full bg-accent px-5 text-sm font-semibold text-bg transition-colors hover:bg-accent/90 md:inline-flex"
+          className="hidden min-h-11 items-center rounded-full bg-accent px-5 text-sm font-semibold text-bg transition-colors hover:bg-accent/90 md:inline-flex"
         >
           {site.navCta.label}
         </a>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildWhatsappUrl } from "@/lib/whatsapp";
+import { buildWhatsappUrl, normalizeWhatsappPhone } from "@/lib/whatsapp";
 
 const input = {
   name: "João Souza",
@@ -42,5 +42,19 @@ describe("buildWhatsappUrl", () => {
     });
     const texto = decodeURIComponent(url.split("?text=")[1]!);
     expect(texto).toBe("Olá! Meu nome é Ana (ana@x.com).\n\nOi");
+  });
+});
+
+describe("normalizeWhatsappPhone", () => {
+  it("mantém um número já só com dígitos", () => {
+    expect(normalizeWhatsappPhone("5511988887777")).toBe("5511988887777");
+  });
+
+  it("remove formatação com DDI, parênteses, espaços e hífen", () => {
+    expect(normalizeWhatsappPhone("+55 (11) 98888-7777")).toBe("5511988887777");
+  });
+
+  it("retorna string vazia quando não há dígitos", () => {
+    expect(normalizeWhatsappPhone("abc")).toBe("");
   });
 });
