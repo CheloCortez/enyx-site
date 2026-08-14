@@ -104,13 +104,47 @@ H2 `clamp(2rem, 4.5vw, 3rem)` / peso 800. Corpo `1rem`–`1.0625rem` / `leading-
 
 ### Responsivo
 
-- Container `max-width: 1200px`, padding lateral `1.25rem` (mobile) → `2rem`.
-- Hero: 2 colunas ≥1024px, empilhado abaixo (bloco de código embaixo do texto).
-- Serviços: 3 col ≥1024px → 2 col ≥640px → 1 col.
-- Portfólio, Fundadores: 2 col ≥768px → 1 col.
-- Processo: 5 col ≥1024px → 2 col ≥640px → 1 col.
-- Diferenciais: 2 col ≥1024px (título esquerda / lista direita) → empilhado.
-- Navbar: menu vira drawer/sheet abaixo de 768px (o protótipo não cobre mobile — decisão nossa).
+Os prints do protótipo são todos desktop. O comportamento mobile é decisão nossa, e o site é
+**construído mobile-first**: as classes base valem para celular e os breakpoints só adicionam.
+Alvo de referência: 360px de largura (o menor aparelho relevante hoje).
+
+**Container.** `max-width: 1200px`, padding lateral `1.25rem` → `2rem` a partir de `md`.
+
+**Grids por seção:**
+
+| Seção | base (<640px) | `sm` ≥640 | `lg` ≥1024 |
+|---|---|---|---|
+| Hero | 1 col, código abaixo do texto | — | 2 col |
+| Serviços | 1 col | 2 col | 3 col |
+| Diferenciais | 1 col (título acima da lista) | — | 2 col (título à esquerda, sticky) |
+| Portfólio | 1 col | — | 2 col (`md` ≥768) |
+| Processo | 1 col | 2 col | 5 col |
+| Fundadores | 1 col | — | 2 col (`md` ≥768) |
+| Stats | 3 col sempre (números curtos cabem) | — | — |
+| Footer | 1 col empilhado | — | 3 col (`md`) |
+
+**Navbar mobile (<768px).** Logo + botão hamburger. Ao abrir, um painel full-screen desliza de
+cima com os 4 links em fonte grande e o botão "Agendar Conversa" ocupando a largura toda. Fecha ao
+clicar num link, no backdrop ou com `Escape`; trava o scroll do body enquanto aberto; foco preso
+dentro do painel e devolvido ao hamburger ao fechar. `aria-expanded` e `aria-controls` no botão.
+
+**Ajustes mobile específicos:**
+
+- **Bloco de código do hero** — a única coisa que pode estourar a largura. Recebe
+  `overflow-x: auto` próprio, `font-size` menor (`0.8125rem`) e `-webkit-overflow-scrolling: touch`.
+  O `body` nunca rola na horizontal.
+- **Tipografia** — o `clamp()` do H1/H2 já resolve; conferir que o H1 não passa de 4 linhas em 360px.
+- **Alvos de toque** — todo elemento clicável com no mínimo 44×44px, inclusive os ícones sociais
+  do footer e os links "Visitar projeto".
+- **CTAs do hero** — largura total e empilhados abaixo de `sm`, lado a lado a partir dali.
+- **Formulário** — nome e e-mail lado a lado só em `md`+; empilhados abaixo. Inputs com
+  `font-size: 16px` para o iOS não dar zoom ao focar. `inputMode`/`autoComplete` corretos
+  (`name`, `email`).
+- **Espaçamento vertical** — seções com `py-16` no mobile e `py-24`/`py-28` em desktop.
+- **Fundo do hero** — o glow radial reduz de intensidade no mobile para não lavar o texto.
+
+**Verificação obrigatória:** testar em 360px, 390px, 768px e 1440px, confirmando zero scroll
+horizontal em qualquer um.
 
 ## 5. Seções e ordem
 
@@ -140,13 +174,13 @@ Tudo abaixo vive em `src/content/site.ts`.
 
 ### Marca
 - Logo: `EN` em `--accent` + `YX` em `--text`, mono/bold.
-- Tagline do footer: "Studio de engenharia exclusivo para construir soluções digitais de alto valor com rigor técnico e visão de negócio."
+- Tagline do footer: "Studio de engenharia dedicado a construir soluções digitais de alto valor, com rigor técnico e visão de negócio."
 - Copyright: "© 2026 ENYX. Todos os direitos reservados."
 
 ### Hero
 - Badge: `SOFTWARE HOUSE DIGITAL` (com dot verde pulsante)
 - Título: "Transformando ideias em ***produtos***"
-- Subtítulo: "Desenvolvimento de sistemas web com rigor técnico e pragmatismo para crescer. Uma **excelência técnica** encontra a estratégia de escala." (trecho em negrito na cor `--text`)
+- Subtítulo: "Desenvolvimento de sistemas web com rigor técnico e pragmatismo. Onde a **excelência técnica** encontra a estratégia de escala." (trecho em negrito na cor `--text`)
 - CTAs: "Iniciar um Projeto" (primário, seta) → `#contato` · "Explorar Case Studies" (secundário, ícone link externo) → `#portfolio`
 - Bloco de código — título da janela `ENYX.StartProject`, três traffic lights (vermelho/amarelo/verde):
   ```js
@@ -164,7 +198,7 @@ Tudo abaixo vive em `src/content/site.ts`.
 ### Serviços
 - Eyebrow: `SERVIÇOS · O QUE FAZEMOS`
 - Título: "Soluções Digitais de Alta Fidelidade."
-- Subtítulo: "Construímos software que não apenas funciona bem, mas sim busca paridade ao mercado e se torna parte do sucesso do seu negócio."
+- Subtítulo: "Construímos software que não apenas funciona bem, mas que acompanha o mercado e se torna parte do sucesso do seu negócio."
 
 | Ícone | Título | Descrição |
 |---|---|---|
@@ -192,12 +226,12 @@ Tudo abaixo vive em `src/content/site.ts`.
 |---|---|---|
 | SITE INSTITUCIONAL | TSTECK Equipamentos | Presença digital empresarial construída para transmitir solidez e confiança no segmento de equipamentos industriais. |
 | PLATAFORMA SAAS | AulaMarcada | Sistema completo de agendamento e gestão de aulas particulares, com painel do professor e experiência do aluno integrada. |
-| OPERAÇÃO COMERCIAL DIGITAL | Site Mercado Livre | Plataforma voltada a operação comercial digital com foco em performance e experiência otimizada de compra. |
+| OPERAÇÃO COMERCIAL DIGITAL | Site Mercado Livre | Plataforma de operação comercial digital com foco em performance e experiência de compra otimizada. |
 | E-COMMERCE · MARCA | Vortex Patins | Presença digital de nicho para marca de patins. E-commerce com identidade visual forte e experiência de compra premium. |
 
 ### Processo
 - Eyebrow: `PROCESSO` · Título: "Workflow de Engenharia"
-- Subtítulo: "Um processo iterativo e transparente para entregar, iterar, medir e evoluir o produto a cada sprint."
+- Subtítulo: "Um processo iterativo e transparente para entregar, medir e evoluir o produto a cada sprint."
 
 | Nº | Etapa | Descrição |
 |---|---|---|
@@ -293,8 +327,17 @@ seção contra os prints, em desktop e mobile.
 ## 11. Riscos e pontos em aberto
 
 - **Nome/domínio não confirmados** — mitigado pela centralização em `site.ts`.
-- **Textos com erros de português no protótipo** (ex.: "Uma excelência técnica encontra a estratégia
-  de escala" e "busca paridade ao mercado" soam truncados). Mantidos fiéis ao original nesta versão;
-  vale revisar com o cliente depois.
+- **Textos ajustados.** Cinco trechos do protótipo estavam truncados ou redundantes e foram
+  reescritos (com aval do cliente) — o restante é fiel ao original:
+
+  | Onde | Antes | Agora |
+  |---|---|---|
+  | Hero | "…e pragmatismo para crescer. Uma **excelência técnica** encontra…" | "…e pragmatismo. Onde a **excelência técnica** encontra…" |
+  | Serviços | "…mas sim busca paridade ao mercado e se torna…" | "…mas que acompanha o mercado e se torna…" |
+  | Processo | "…iterativo e transparente para entregar, iterar, medir e evoluir…" | "…iterativo e transparente para entregar, medir e evoluir…" |
+  | Case ML | "Plataforma voltada a operação comercial digital … experiência otimizada de compra." | "Plataforma de operação comercial digital … experiência de compra otimizada." |
+  | Footer | "Studio de engenharia exclusivo para construir…" | "Studio de engenharia dedicado a construir…" |
+
+  O cliente revisa todo o copy depois da primeira versão no ar.
 - **Capas dos cases** — sem as imagens reais, a seção mais forte do site fica fraca. É o primeiro
   item a substituir.
