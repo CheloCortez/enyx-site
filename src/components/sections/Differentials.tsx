@@ -21,9 +21,9 @@ export function Differentials() {
         </Reveal>
 
         <ul className="flex flex-col gap-10">
-          {site.differentials_list.map((item, index) => (
+          {site.differentials_list.map((item) => (
             <li key={item.title}>
-              <Reveal delay={index * 0.05}>
+              <Reveal>
                 <div className="flex gap-4">
                   <IconBox name={item.icon} size="sm" />
                   <div>

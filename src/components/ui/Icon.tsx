@@ -18,11 +18,14 @@ import {
 } from "lucide-react";
 import type { IconName } from "@/content/site";
 
-// lucide-react@1.31.0 removed brand/logo icons (Github, Linkedin, Instagram
-// are no longer exported under any name). Rebuilt locally via
-// createLucideIcon from the same path data Lucide shipped pre-removal, so
-// these render identically to the built-in icons and stay type-compatible
-// with LucideIcon.
+// lucide-react@1.31.0 (see package.json) removed brand/logo icons (Github,
+// Linkedin, Instagram are no longer exported under any name). Rebuilt
+// locally via createLucideIcon, with path data taken from the "github",
+// "linkedin" and "instagram" icons on https://lucide.dev/icons/ (the
+// upstream source Lucide's own package generates its icons from), so these
+// render identically to the former built-in icons and stay type-compatible
+// with LucideIcon. To re-verify or update the path data, compare against
+// the current SVG markup on that site for each icon.
 const Github = createLucideIcon("github", [
   [
     "path",

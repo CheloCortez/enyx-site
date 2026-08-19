@@ -22,9 +22,9 @@ export function Services() {
       </Reveal>
 
       <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {site.services_list.map((service, index) => (
+        {site.services_list.map((service) => (
           <li key={service.title}>
-            <Reveal delay={index * 0.05} className="h-full">
+            <Reveal className="h-full">
               <Card interactive className="h-full p-6">
                 <IconBox name={service.icon} />
                 <h3 className="mt-5 text-lg font-bold text-text">

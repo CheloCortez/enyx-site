@@ -21,3 +21,11 @@ export function buildWhatsappUrl(phone: string, input: ContactInput): string {
 
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
 }
+
+/**
+ * Monta o link direto do WhatsApp (sem mensagem pré-preenchida), normalizando
+ * `phone` do mesmo jeito que `buildWhatsappUrl`.
+ */
+export function buildWhatsappLink(phone: string): string {
+  return `https://wa.me/${normalizeWhatsappPhone(phone)}`;
+}

@@ -20,9 +20,9 @@ export function Portfolio() {
       </Reveal>
 
       <ul className="mt-14 grid gap-6 md:grid-cols-2">
-        {site.projects.map((project, index) => (
+        {site.projects.map((project) => (
           <li key={project.title}>
-            <Reveal delay={index * 0.06} className="h-full">
+            <Reveal className="h-full">
               <Card interactive className="h-full overflow-hidden">
                 <div className="relative aspect-[16/9] border-b border-border bg-bg">
                   <Image
@@ -55,12 +55,7 @@ export function Portfolio() {
                       {site.portfolio.linkLabel}
                       <Icon name="externalLink" className="size-4" />
                     </a>
-                  ) : (
-                    <span className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-muted">
-                      {site.portfolio.linkLabel}
-                      <Icon name="externalLink" className="size-4" />
-                    </span>
-                  )}
+                  ) : null}
                 </div>
               </Card>
             </Reveal>

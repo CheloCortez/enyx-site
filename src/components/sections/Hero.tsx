@@ -38,7 +38,7 @@ export function Hero() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.08}>
+            <Reveal>
               <Heading
                 as="h1"
                 text={site.hero.title}
@@ -48,7 +48,7 @@ export function Hero() {
               <Subtitle />
             </Reveal>
 
-            <Reveal delay={0.16}>
+            <Reveal>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Button href={site.hero.primaryCta.href} icon="arrowRight">
                   {site.hero.primaryCta.label}
@@ -64,7 +64,7 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.24}>
+          <Reveal>
             <CodeCard />
           </Reveal>
         </div>

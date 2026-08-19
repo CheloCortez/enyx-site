@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { buildWhatsappUrl, normalizeWhatsappPhone } from "@/lib/whatsapp";
+import {
+  buildWhatsappLink,
+  buildWhatsappUrl,
+  normalizeWhatsappPhone,
+} from "@/lib/whatsapp";
 
 const input = {
   name: "João Souza",
@@ -42,6 +46,20 @@ describe("buildWhatsappUrl", () => {
     });
     const texto = decodeURIComponent(url.split("?text=")[1]!);
     expect(texto).toBe("Olá! Meu nome é Ana (ana@x.com).\n\nOi");
+  });
+});
+
+describe("buildWhatsappLink", () => {
+  it("aponta para wa.me com o número já só com dígitos", () => {
+    expect(buildWhatsappLink("5511988887777")).toBe(
+      "https://wa.me/5511988887777",
+    );
+  });
+
+  it("normaliza qualquer formatação do telefone", () => {
+    expect(buildWhatsappLink("+55 (11) 98888-7777")).toBe(
+      "https://wa.me/5511988887777",
+    );
   });
 });
 

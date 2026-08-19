@@ -43,6 +43,8 @@ src/
     globals.css          #   tokens de design (@theme), estilos base, utilitários (.bg-grid, .reveal...)
     not-found.tsx        #   página 404
     sitemap.ts            #   gera /sitemap.xml a partir de site.brand.url
+    robots.ts               #   gera /robots.txt a partir de site.brand.url
+    opengraph-image.tsx      #   gera a imagem de Open Graph/Twitter Card (ImageResponse)
     icon.svg               #   favicon
   content/
     site.ts               # ÚNICA fonte de verdade para todo texto/dado do site
@@ -61,7 +63,6 @@ src/
 public/
   portfolio/                 # capas dos projetos do portfólio (hoje: SVGs placeholder)
   founders/                   # fotos dos fundadores (hoje: SVGs placeholder)
-  robots.txt
 docs/superpowers/              # spec de design e plano de implementação (histórico do SDD)
 .superpowers/sdd/2026-08-14-enyx-site/  # briefs e reports de cada task do build guiado
 ```

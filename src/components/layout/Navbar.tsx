@@ -21,6 +21,15 @@ export function Navbar() {
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const onChange = (event: MediaQueryListEvent) => {
+      if (event.matches) closeMenu();
+    };
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [closeMenu]);
+
   return (
     <header
       className={cn(

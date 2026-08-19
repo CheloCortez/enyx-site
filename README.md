@@ -1,6 +1,6 @@
 # ENYX — Site Institucional
 
-Landing page institucional da ENYX, uma software house fictícia. É o "cartão de visitas"
+Landing page institucional da ENYX, uma software house. É o "cartão de visitas"
 digital da empresa: serviços, portfólio, processo de trabalho, fundadores e um formulário
 de contato que abre o WhatsApp com a mensagem já preenchida.
 
@@ -14,12 +14,14 @@ Para detalhes de arquitetura, design system e convenções de código, veja
 
 ## Comandos
 
-Node 22 é necessário (o script `dev`/`build`/etc. usa recursos do Next 16 que exigem uma
-versão recente). Se o Node padrão da máquina for mais antigo, aponte o PATH para uma versão
-via nvm antes de rodar qualquer comando abaixo:
+Node 22 (ou mais recente) é necessário — o script `dev`/`build`/etc. usa recursos do
+Next 16 que exigem uma versão recente. Se o Node padrão da máquina for mais antigo, use o
+[nvm](https://github.com/nvm-sh/nvm) para instalar/ativar a versão certa antes de rodar
+qualquer comando abaixo:
 
 ```bash
-export PATH=/home/lemontech/.nvm/versions/node/v22.22.3/bin:$PATH
+nvm install 22
+nvm use 22
 ```
 
 | Comando | O que faz |
@@ -71,7 +73,7 @@ funcionamento ou o deploy. Quando os dados reais estiverem disponíveis, atualiz
 | E-mail | `site.contact.email` | `contato@enyx.dev` |
 | URL de cada projeto do portfólio | `site.projects[].url` | `#` (4 projetos) |
 | URLs de GitHub / LinkedIn / Instagram | `site.footer.socials[].url` | `#` (os 3 — o rodapé já esconde automaticamente qualquer social cuja URL seja `#`) |
-| Domínio final | `site.brand.url` e `public/robots.txt` | `https://enyxsh.com.br` |
+| Domínio final | `site.brand.url` (usado também por `src/app/robots.ts` e `src/app/sitemap.ts`) | `https://enyxsh.com.br` |
 
 O link de WhatsApp é normalizado (só dígitos) tanto no envio do formulário quanto no link
 direto "WhatsApp direto" — ver `src/lib/whatsapp.ts` — então qualquer formatação (`+55 (11)

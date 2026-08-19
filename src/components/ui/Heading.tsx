@@ -1,5 +1,14 @@
 import { cn } from "@/lib/cn";
 
+/**
+ * `emphasis` is optional and rendered in italic accent green only when the
+ * caller passes it explicitly (Hero, CtaStats, Contact). In Services,
+ * Differentials, Portfolio, Process and About, `titleEmphasis` is instead
+ * concatenated into the plain `text` prop by the section itself — that's a
+ * deliberate content decision (the accented `<em>` treatment is reserved
+ * for those three sections), not a bug or an oversight to "fix" by wiring
+ * `emphasis` through everywhere.
+ */
 export function Heading({
   as: Tag = "h2",
   id,

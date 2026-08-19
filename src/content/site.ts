@@ -70,6 +70,8 @@ export const site = {
     primaryCta: { label: "Iniciar um Projeto", href: "#contato" },
     secondaryCta: { label: "Explorar Case Studies", href: "#portfolio" },
     codeTitle: "ENYX.StartProject",
+    /** Identificador usado dentro do snippet de código do CodeCard. */
+    codeIdentifier: "enyx",
     deliveryLabel: "Taxa de Entrega",
     deliveryValue: "100%",
   },

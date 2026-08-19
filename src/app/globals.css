@@ -27,7 +27,7 @@
     color: var(--color-text);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* A navbar tem 64px; as âncoras param abaixo dela. */
@@ -43,7 +43,6 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {

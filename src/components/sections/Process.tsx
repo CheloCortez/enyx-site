@@ -22,9 +22,9 @@ export function Process() {
       </Reveal>
 
       <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
-        {site.process.steps.map((step, index) => (
+        {site.process.steps.map((step) => (
           <li key={step.number}>
-            <Reveal delay={index * 0.05}>
+            <Reveal>
               <span className="font-mono text-4xl font-bold text-accent-dim">
                 {step.number}
               </span>
@@ -39,7 +39,7 @@ export function Process() {
         ))}
       </ol>
 
-      <Reveal delay={0.1}>
+      <Reveal>
         <Card className="mx-auto mt-16 max-w-2xl p-6">
           <div className="flex gap-4">
             <IconBox name={site.process.highlight.icon} />

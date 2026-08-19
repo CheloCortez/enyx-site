@@ -21,7 +21,35 @@ export function MobileMenu({
     document.body.style.overflow = "hidden";
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const panel = panelRef.current;
+      if (!panel) return;
+
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0]!;
+      const last = focusable[focusable.length - 1]!;
+
+      if (event.shiftKey) {
+        if (document.activeElement === first || !panel.contains(document.activeElement)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last || !panel.contains(document.activeElement)) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener("keydown", onKeyDown);
 
@@ -49,6 +77,9 @@ export function MobileMenu({
       <div
         ref={panelRef}
         id="menu-mobile"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navegação"
         className="relative mt-16 border-b border-border bg-bg-alt px-5 pb-8 pt-4"
       >
         <nav aria-label="Navegação principal">

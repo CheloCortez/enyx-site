@@ -23,7 +23,7 @@ export function CodeCard() {
           <code>
             <span className={KW}>const</span> <span className={VAR}>projeto</span>{" "}
             <span className={PUNC}>=</span> <span className={KW}>await</span>{" "}
-            <span className={VAR}>enyx</span>
+            <span className={VAR}>{site.hero.codeIdentifier}</span>
             {"\n  "}
             <span className={PUNC}>.</span>
             <span className={FN}>analisar</span>

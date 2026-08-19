@@ -22,9 +22,9 @@ export function Founders() {
       </Reveal>
 
       <ul className="mt-14 grid gap-6 md:grid-cols-2">
-        {site.founders.map((founder, index) => (
+        {site.founders.map((founder) => (
           <li key={founder.name}>
-            <Reveal delay={index * 0.08} className="h-full">
+            <Reveal className="h-full">
               <Card className="h-full p-6">
                 <div className="flex items-center gap-4">
                   <Image

@@ -53,4 +53,9 @@ describe("conteúdo do site", () => {
   it("expõe o telefone do WhatsApp só com dígitos", () => {
     expect(site.contact.whatsapp).toMatch(/^\d{12,13}$/);
   });
+
+  it("garante que subtitleHighlight aparece exatamente uma vez em hero.subtitle", () => {
+    const { subtitle, subtitleHighlight } = site.hero;
+    expect(subtitle.split(subtitleHighlight)).toHaveLength(2);
+  });
 });

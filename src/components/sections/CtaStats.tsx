@@ -19,18 +19,15 @@ export function CtaStats() {
         </div>
       </Reveal>
 
-      <Reveal delay={0.1}>
+      <Reveal>
         <dl className="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-4">
           {site.stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <dt className="sr-only">{stat.label}</dt>
-              <dd>
-                <span className="block font-mono text-3xl font-bold text-accent sm:text-4xl">
-                  {stat.value}
-                </span>
-                <span className="mt-2 block text-xs text-muted sm:text-sm">
-                  {stat.label}
-                </span>
+            <div key={stat.label} className="flex flex-col-reverse text-center">
+              <dt className="mt-2 text-xs text-muted sm:text-sm">
+                {stat.label}
+              </dt>
+              <dd className="font-mono text-3xl font-bold text-accent sm:text-4xl">
+                {stat.value}
               </dd>
             </div>
           ))}
