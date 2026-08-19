@@ -63,8 +63,10 @@ src/
 public/
   portfolio/                 # capas dos projetos do portfólio (hoje: SVGs placeholder)
   founders/                   # fotos dos fundadores (hoje: SVGs placeholder)
+scripts/
+  shot.sh                     # screenshots headless para auditoria responsiva (leia os
+                              #   comentários do topo: este Chrome tem armadilhas)
 docs/superpowers/              # spec de design e plano de implementação (histórico do SDD)
-.superpowers/sdd/2026-08-14-enyx-site/  # briefs e reports de cada task do build guiado
 ```
 
 ### Responsabilidade de cada camada
@@ -109,7 +111,7 @@ Ao verificar responsividade:
   projeto é `min-h-11` (ou `min-h-12`/`min-h-14` onde já há mais padding natural).
 - Um Chrome headless local tem viewport mínimo de 500px e não tira screenshot confiável
   acima de ~6000px de altura; se for gerar screenshots para auditoria, veja
-  `.superpowers/sdd/2026-08-14-enyx-site/shot.sh` e leia os comentários no topo do
+  `scripts/shot.sh` e leia os comentários no topo do
   arquivo antes de usar — e desconfie de qualquer elemento que apareça "em branco" bem
   perto de um múltiplo de 5000px de altura: é a técnica de fatiar+costurar screenshots
   criando um artefato de captura, não um bug do site (visto e confirmado na Task 13; a
